@@ -1,77 +1,106 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+    <v-app id="inspire">
+        <v-content>
+            <v-container fluid fill-height>
+                <v-layout align-center justify-center>
+                    <v-flex xs12 sm8 md4>
+                        <v-card class="elevation-12">
+                            <v-toolbar dark color="primary">
+                                <v-toolbar-title>
+                                    <v-spacer></v-spacer>
+                                    <v-icon>fa-id-card</v-icon>
+                                    Formulario de registro.
+                                </v-toolbar-title>
+                                <v-spacer></v-spacer>
+                            </v-toolbar>
+                            @if ($errors->any())
+                                <v-alert
+                                        :value="true"
+                                        color="error"
+                                        icon="warning"
+                                        outline
+                                >
+                                    <ul class="mb-0">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                                </v-alert>
+                            @else
+                                <v-alert :value="true"
+                                         color="info"
+                                         icon="info"
+                                         outline
+                                >Por favor Ingresa tus Datos :)</v-alert>
+                            @endif
+                            <v-card-text>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <v-form method="POST" action="{{ route('register') }}">
+                                    {{ csrf_field() }}
+                                    <v-text-field
+                                        id="name"
+                                        label="Nombre:"
+                                        placeholder="Ingrese su nombre."
+                                        label-for="name"
+                                        prepend-icon="person"
+                                        name="name"
+                                        type="text">
+                                    </v-text-field>
+                                    <v-text-field
+                                            id="email"
+                                            label="Correo electrónico:"
+                                            description="Por favor Ingresa tu correo electrónico."
+                                            {{--v-validate="'required|email'"--}}
+                                            {{--:error-messages="errors.collect('email')"--}}
+                                            {{--data-vv-name="email"--}}
+                                            label-for="email"
+                                            prepend-icon="email"
+                                            name="email"
+                                            type="text">
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                    </v-text-field>
+                                    <v-text-field id="password"
+                                                  {{--v-validate="'required'"--}}
+                                                  :error-messages="errors.collect('password')"
+                                                  ref="password"
+                                                  prepend-icon="lock"
+                                                  name="password"
+                                                  label="Contraseña"
+                                                  type="password">
+                                    </v-text-field>
+                                    <v-text-field id="password_confirmation"
+                                                  {{--v-validate="'required|confirmed:password'"--}}
+                                                  {{--:error-messages="errors.collect('passwordconfirmation')"--}}
+                                                  {{--data-vv-name="passwordconfirmation"--}}
+                                                  placeholder="Confirma tu contraseña"
+                                                  prepend-icon="lock"
+                                                  name="password_confirmation"
+                                                  label="Confirme contraseña"
+                                                  type="password">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    </v-text-field>
+                                    <v-content class="text-xs-center">
+                                        <a  href="{{ route('login') }}">¿Ya te has registrado?</a>
+                                    </v-content>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <v-card-actions  class="text-xs-center m-auto">
+                                        <v-btn color="primary" type="submit">Confirmar Registro</v-btn>
+                                    </v-card-actions>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                </v-form>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="new-password">
+                            </v-card-text>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-content>
+    </v-app>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

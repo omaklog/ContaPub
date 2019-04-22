@@ -11,11 +11,14 @@ import 'vuetify/dist/vuetify.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '@fortawesome/fontawesome-free/js/all.min'
 import 'animate.css/animate.css'
+
+
 window.Vue = require('vue');
 
+Vue.use(Vuetify);
 
-
-Vue.use(Vuetify)
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
 
 /**
  * The following block of code may be used to automatically register your

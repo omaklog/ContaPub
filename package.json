@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "animate.css": "^3.7.0",
+        "vee-validate": "^2.2.4",
         "vuetify": "^1.5.12"
     }
 }
