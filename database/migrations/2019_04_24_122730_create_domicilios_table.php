@@ -14,7 +14,7 @@ class CreateDomiciliosTable extends Migration
     public function up()
     {
         Schema::create('domicilios', function (Blueprint $table) {
-            $table->unsignedInteger('id');
+            $table->unsignedInteger('id',true);
 
             $table->unsignedInteger('municipio_id');
             $table->foreign('municipio_id')->references('id')->on('municipios');
@@ -23,11 +23,11 @@ class CreateDomiciliosTable extends Migration
             $table->foreign('localidad_id')->references('id')->on('localidades');
 
 
-//            $table->unsignedInteger('tipoAsentamiento_id');
-//            $table->foreign('tipoAsentamiento_id')->references('id')->on('tipo_asentamientos');
-//
-//            $table->unsignedInteger('tipoVialidad_id');
-//            $table->foreign('tipoVialidad_id')->references('id')->on('tipo_vialidades');
+           $table->unsignedInteger('tipoAsentamiento_id');
+           $table->foreign('tipoAsentamiento_id')->references('id')->on('tipo_asentamientos');
+
+           $table->unsignedInteger('tipoVialidad_id');
+           $table->foreign('tipoVialidad_id')->references('id')->on('tipo_vialidades');
 
             $table->string('nombre_vialidad');
 
@@ -38,8 +38,11 @@ class CreateDomiciliosTable extends Migration
             $table->string('numero_interior')->nullable();;
             $table->string('codigo_postal')->nullable();;
 
-//            $table->unsignedInteger('user_id');
-//            $table->foreign('user_id')->references('id')->on('users');
+           // $table->bigIncrements('user_id');
+           // $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('user_id')->unsigned();
+
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });

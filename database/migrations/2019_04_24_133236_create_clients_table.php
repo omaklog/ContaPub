@@ -14,7 +14,7 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->unsignedInteger('id');
+            $table->unsignedInteger('id',true);
             $table->string('nombre');
             $table->string('rfc');
             $table->string('satPassword');
@@ -26,20 +26,13 @@ class CreateClientsTable extends Migration
             $table->integer('movil');
             $table->string('notas');
 
-//            $table->integer('domicilio_id');
-////            $table->foreign('domicilio_id')
-////                ->references('id')->on('users')
-////                ->onDelete('cascade');
 
-            $table->unsignedInteger('domicilio_id')->unsigned();
+            $table->unsignedInteger('domicilio_id');
 
-//            $table->foreign('domicilio_id')->references('id')->on('domicilios');
+            $table->foreign('domicilio_id')->references('id')->on('domicilios');
 
             $table->timestamps();
         });
-//        Schema::table('clients', function($table) {
-//            $table->foreign('domicilio_id')->references('id')->on('domicilios');
-//        });
     }
 
     /**

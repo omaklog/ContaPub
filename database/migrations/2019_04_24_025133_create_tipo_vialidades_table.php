@@ -14,7 +14,7 @@ class CreateTipoVialidadesTable extends Migration
     public function up()
     {
         Schema::create('tipo_vialidades', function (Blueprint $table) {
-            $table->unsignedInteger('id');
+            $table->unsignedInteger('id', true);
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class CreateTipoAsentamientosTable extends Migration
     public function up()
     {
         Schema::create('tipo_asentamientos', function (Blueprint $table) {
-            $table->unsignedInteger('id');
+            $table->unsignedInteger('id',true);
             $table->timestamps();
         });
     }
