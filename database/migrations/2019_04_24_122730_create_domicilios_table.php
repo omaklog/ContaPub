@@ -16,18 +16,15 @@ class CreateDomiciliosTable extends Migration
         Schema::create('domicilios', function (Blueprint $table) {
             $table->unsignedInteger('id',true);
 
+            $table->unsignedInteger('estado_id');
+            $table->foreign('estado_id')->references('id')->on('estados');
+
             $table->unsignedInteger('municipio_id');
             $table->foreign('municipio_id')->references('id')->on('municipios');
 
             $table->unsignedInteger('localidad_id');
             $table->foreign('localidad_id')->references('id')->on('localidades');
 
-
-           $table->unsignedInteger('tipoAsentamiento_id');
-           $table->foreign('tipoAsentamiento_id')->references('id')->on('tipo_asentamientos');
-
-           $table->unsignedInteger('tipoVialidad_id');
-           $table->foreign('tipoVialidad_id')->references('id')->on('tipo_vialidades');
 
             $table->string('nombre_vialidad');
 

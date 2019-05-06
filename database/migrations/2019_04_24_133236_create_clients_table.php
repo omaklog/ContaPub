@@ -19,15 +19,15 @@ class CreateClientsTable extends Migration
             $table->string('rfc');
             $table->string('satPassword');
             $table->string('fielPassword');
+            $table->string('assitePassword');
             $table->date('vencimientoFiel');
             $table->date('fechaPemex');
-            $table->string('assitePassword');
             $table->enum('tipoContrato',['Transitorio','Jubilado','Planta','Otro']);
-            $table->integer('movil');
-            $table->string('notas');
+            $table->string('movil')->nullable();
+            $table->string('notas')->nullable();
 
 
-            $table->unsignedInteger('domicilio_id');
+            $table->unsignedInteger('domicilio_id')->nullable();
 
             $table->foreign('domicilio_id')->references('id')->on('domicilios');
 

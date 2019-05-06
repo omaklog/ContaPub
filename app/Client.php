@@ -10,7 +10,7 @@ class Client extends Model
 
     public function domicilio()
     {
-        return $this->hasOne('App\Domicilio');
+        return $this->hasOne('App\Domicilio')->nullable();
     }
 
 

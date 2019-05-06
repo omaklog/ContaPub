@@ -17,6 +17,12 @@ window.Vue = require('vue');
 
 Vue.use(Vuetify);
 
+window.axios = require('axios');
+
+//... configure axios...
+
+Vue.prototype.$http = window.axios;
+
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 
@@ -31,7 +37,7 @@ Vue.use(VeeValidate);
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('clientes-component', require('./components/ClientesComponent.vue').default);
 // Vue.component('tool-bar', require('./components/layout/Toolbar.vue').default);
 
 /**
